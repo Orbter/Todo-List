@@ -1,0 +1,121 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+}
+$menu-text: white;
+$menu-color: #252629;
+li {
+  list-style-type: none;
+}
+
+.tab {
+  height: 100vh;
+  width: clamp(220px, 40vw, 300px);
+  background-color: $menu-color;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  position: static;
+  transition: all 0.5s easy;
+}
+.bx {
+  fill: $menu-text;
+}
+.menu {
+  fill: $menu-text;
+  cursor: pointer;
+}
+.menu-headline {
+  color: $menu-text;
+  display: flex;
+  justify-content: center;
+}
+.menu-box {
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  padding: 10px;
+}
+.menu-user {
+  color: $menu-text;
+  padding: 10px;
+  font-size: 1.8rem;
+}
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.menu-main-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bx-box {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+.bx-box:before {
+  content: "";
+}
+.bx-text::before {
+  content: "";
+}
+.bx-text {
+  color: $menu-text;
+  font-size: 1.2rem;
+}
+.sidebar-active .bx-text,
+.sidebar-active .menu-headline,
+.sidebar-active .menu-user {
+  display: none;
+}
+.sidebar-active .bx-box {
+  padding: 15px;
+  width: fit-content;
+  gap: 0;
+}
+.sidebar-active .menu-main-list {
+  justify-content: center;
+  align-items: center;
+}
+.sidebar-active .menu-list {
+  gap: 0;
+}
+.sidebar-active .menu-content {
+  gap: 15px;
+}
+.sidebar-active .menu-user {
+  display: none;
+}
+.sidebar-active .menu-box {
+  justify-content: center;
+}
+.sidebar-active {
+  width: 65px;
+}
+
+.bx-box:hover {
+  background-color: white;
+  border-radius: 5px;
+}
+.bx-box:hover .bx {
+  fill: $menu-color;
+}
+.bx-box:hover .bx-text {
+  color: $menu-color;
+}

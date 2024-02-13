@@ -3,9 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
     <title>Todo list</title>
   </head>
   <body>
-    hello world
+    <nav class="tab" id="tab">
+      <div class="menu-container">
+        <div class="menu-box">
+          <box-icon name="menu" class="menu" id="menu"></box-icon>
+        </div>
+        <h1 class="menu-user">Welcome back, Amit</h1>
+      </div>
+      <ul class="menu-list">
+        <li class="menu-content">
+          <div><h2 class="menu-headline">Main Menu</h2></div>
+          <ul class="menu-main-list">
+            <li class="bx-box">
+              <box-icon type="solid" name="home" class="bx"></box-icon>
+              <span class="bx-text">Home</span>
+            </li>
+            <li class="bx-box">
+              <box-icon type="solid" name="check-square" class="bx"></box-icon>
+              <span class="bx-text">All Task</span>
+            </li>
+            <li class="bx-box">
+              <box-icon name="plus-medical" class="bx"></box-icon>
+              <span class="bx-text">Quick Add</span>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-content">
+          <div><h2 class="menu-headline">Tasks Overview</h2></div>
+          <ul class="menu-main-list">
+            <li class="bx-box">
+              <box-icon type="solid" name="calendar-week" class="bx"></box-icon>
+              <span class="bx-text">Today</span>
+            </li>
+            <li class="bx-box">
+              <box-icon type="solid" name="calendar-plus" class="bx"></box-icon>
+              <span class="bx-text">Upcoming</span>
+            </li>
+            <li class="bx-box">
+              <box-icon type="solid" name="calendar-x" class="bx"></box-icon>
+              <span class="bx-text">Overdue</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <h1>i am a test</h1>
   </body>
 </html>
