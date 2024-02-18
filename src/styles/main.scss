@@ -182,7 +182,6 @@ li {
 .task {
   display: flex;
   margin-left: 20px;
-  border-left: 10px solid $task-status-done;
   width: 90%;
   color: white;
   background-color: $header;
@@ -191,6 +190,15 @@ li {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 1.1rem;
+}
+.task-border-done {
+  border-left: 10px solid $task-status-done;
+}
+.task-border-stuck {
+  border-left: 10px solid $task-status-stuck;
+}
+.task-border-working {
+  border-left: 10px solid $task-status-working;
 }
 .task-name {
   border-right: 1px solid black;
@@ -302,6 +310,14 @@ li {
   .task {
     height: fit-content;
     min-width: 200px;
+  }
+  .task-border-done {
+    border: 3px solid $task-status-done;
+  }
+  .task-border-stuck {
+    border: 3px solid $task-status-stuck;
+  }
+  .task-border-working {
     border: 3px solid $task-status-working;
   }
   .header {

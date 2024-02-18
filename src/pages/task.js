@@ -1,5 +1,6 @@
-function createTask(name, owner, status, priority, tags, date) {
+function createTaskUI(name, owner, status, priority, tags, date) {
   //Creating the divs
+  const task = document.createElement("div");
   const taskName = document.createElement("div");
   const taskOwner = document.createElement("div");
   const taskStatus = document.createElement("div");
@@ -8,7 +9,8 @@ function createTask(name, owner, status, priority, tags, date) {
   const taskDate = document.createElement("div");
   const taskEdit = document.createElement("div");
   const taskDelete = document.createElement("div");
-
+  const iconEdit = document.createElement("box-icon");
+  const iconDelete = document.createElement("box-icon");
   //classes
   updateTaskClass(
     taskStatus,
@@ -18,8 +20,25 @@ function createTask(name, owner, status, priority, tags, date) {
     taskTags,
     taskDate,
     taskEdit,
-    taskDelete
+    taskDelete,
+    iconEdit,
+    iconDelete,
+    task
   );
+  // appending task
+  document.task.appendChild(taskName);
+  document.task.appendChild(taskOwner);
+  document.task.appendChild(taskStatus);
+  document.task.appendChild(taskPriority);
+  document.task.appendChild(taskTags);
+  document.task.appendChild(taskDate);
+  document.task.appendChild(taskEdit);
+  document.task.appendChild(taskDelete);
+
+  document.taskEdit.appendChild(iconEdit);
+  document.taskDelete.appendChild(iconDelete);
+
+  return task;
 }
 const updateTaskClass = (
   taskStatus,
@@ -29,7 +48,10 @@ const updateTaskClass = (
   taskTags,
   taskDate,
   taskEdit,
-  taskDelete
+  taskDelete,
+  iconEdit,
+  iconDelete,
+  task
 ) => {
   taskStatus.classList.remove(
     "task-status-done",
@@ -44,10 +66,13 @@ const updateTaskClass = (
 
   if (taskStatus.innerText === "done") {
     taskStatus.classList.add("task-status-done", "task-status");
+    task.classList.add("task-border-done");
   } else if (taskStatus.innerText === "stuck") {
     taskStatus.classList.add("task-status-stuck", "task-status");
+    task.classList.add("task-border-stuck");
   } else {
     taskStatus.classList.add("task-status-working", "task-status");
+    task.classList.add("task-border-working");
   }
 
   if (taskPriority.innerText === "high") {
@@ -63,4 +88,11 @@ const updateTaskClass = (
   taskDate.classList.add("task-date");
   taskEdit.classList.add("task-edit", "bx-box-task");
   taskDelete.classList.add("task-delete", "bx-box-task");
+  iconEdit.setAttribute("type", "solid");
+  iconEdit.setAttribute("name", "edit-alt");
+  iconEdit.classList.add("bx");
+  iconDelete.setAttribute("type", "solid");
+  iconDelete.setAttribute("name", "x-square");
+  iconDelete.classList.add("bx");
+  task.classList.add("task");
 };
