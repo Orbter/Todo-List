@@ -13,8 +13,12 @@ body {
 
 $menu-text: white;
 $menu-color: #252629;
-$task-status: #ffdd00;
-$task-priority: #7b2cbf;
+$task-status-working: #ffdd00;
+$task-status-done: #1db443;
+$task-status-stuck: #ef233c;
+$task-priority-high: #7b2cbf;
+$task-priority-medium: #9145cf;
+$task-priority-low: #be74f7;
 $task-tags: #b3e9c7;
 $header: #2a2d2f;
 li {
@@ -178,7 +182,7 @@ li {
 .task {
   display: flex;
   margin-left: 20px;
-  border-left: 10px solid $task-status;
+  border-left: 10px solid $task-status-done;
   width: 90%;
   color: white;
   background-color: $header;
@@ -213,7 +217,7 @@ li {
   justify-content: center;
   width: 15%;
   min-width: 120px;
-  background-color: $task-status;
+  background-color: $task-status-done;
 }
 .task-priority {
   border-right: 1px solid black;
@@ -222,9 +226,23 @@ li {
   justify-content: center;
   width: 12%;
   min-width: 110px;
-
-  background-color: $task-priority;
 }
+.task-priority-high {
+  background-color: $task-priority-high;
+}
+.task-priority-medium {
+  background-color: $task-priority-medium;
+}
+.task-priority-low {
+  background-color: $task-priority-low;
+}
+.task-status-done {
+  background-color: $task-status-done;
+}
+.task-status-working {
+  background-color: $task-status-working;
+}
+
 .task-tags {
   border-right: 1px solid black;
   display: flex;
@@ -246,7 +264,26 @@ li {
   display: flex;
   flex-direction: column;
 }
+.task-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.task-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 
+.bx-box-task:hover {
+  background-color: white;
+  border-radius: 8px;
+}
+.bx-box-task:hover .bx {
+  fill: $menu-color;
+}
 @media (max-width: 970px) {
   .task {
     flex-direction: column;
@@ -266,9 +303,15 @@ li {
   .task {
     height: fit-content;
     min-width: 200px;
-    border: 3px solid $task-status;
+    border: 3px solid $task-status-working;
   }
   .header {
     height: fit-content;
+  }
+  .task-delete {
+    height: 50px;
+  }
+  .task-edit {
+    height: 50px;
   }
 }
