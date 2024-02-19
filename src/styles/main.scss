@@ -202,6 +202,7 @@ li {
   display: flex;
   margin-left: 20px;
   width: 90%;
+  min-width: fit-content;
   color: white;
   background-color: $header;
   height: 90px;
@@ -295,6 +296,7 @@ li {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  min-width: 24px;
 }
 .task-delete {
   display: flex;

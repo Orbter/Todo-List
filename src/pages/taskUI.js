@@ -25,18 +25,26 @@ function createTaskUI(name, owner, status, priority, tags, date) {
     iconDelete,
     task
   );
+  //inner text
+  taskName.innerText = name;
+  taskOwner.innerText = owner;
+  taskStatus.innerText = status;
+  taskPriority.innerText = priority;
+  taskTags.innerText = tags;
+  taskDate.innerText = date;
   // appending task
-  document.task.appendChild(taskName);
-  document.task.appendChild(taskOwner);
-  document.task.appendChild(taskStatus);
-  document.task.appendChild(taskPriority);
-  document.task.appendChild(taskTags);
-  document.task.appendChild(taskDate);
-  document.task.appendChild(taskEdit);
-  document.task.appendChild(taskDelete);
 
-  document.taskEdit.appendChild(iconEdit);
-  document.taskDelete.appendChild(iconDelete);
+  task.appendChild(taskName);
+  task.appendChild(taskOwner);
+  task.appendChild(taskStatus);
+  task.appendChild(taskPriority);
+  task.appendChild(taskTags);
+  task.appendChild(taskDate);
+  task.appendChild(taskEdit);
+  task.appendChild(taskDelete);
+
+  taskEdit.appendChild(iconEdit);
+  taskDelete.appendChild(iconDelete);
 
   return task;
 }

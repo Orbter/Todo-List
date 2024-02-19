@@ -41,9 +41,20 @@ function HomeUI(array) {
 
   //appending
 
-  mainContent.appendChild(header, content);
-  header.appendChild(place, welcome, contentHead);
-  contentHead.appendChild(headText, add);
-  content.appendChild(todayHeadline, today);
-  today.appendChild(ui);
+  // Append to mainContent using append
+  mainContent.append(header, content);
+
+  // Append to header using append
+  header.append(place, welcome, contentHead);
+
+  // Append to contentHead using append
+  contentHead.append(headText, add);
+
+  // Append to content using append
+  content.append(todayHeadline, today);
+
+  // Append to today using append
+  today.append(ui);
 }
+
+export default HomeUI;

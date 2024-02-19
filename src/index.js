@@ -1,7 +1,7 @@
 import "boxicons";
 import "./styles/main.scss";
 import createTaskObject from "./pages/task";
-
+import homeUI from "./pages/home";
 const menu = document.getElementById("menu");
 const tab = document.getElementById("tab");
 let myArray = [];
@@ -19,4 +19,6 @@ const ob = createTaskObject(
 
 myArray.push(ob);
 console.log(myArray);
+
 export default myArray;
+homeUI();
