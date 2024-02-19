@@ -161,11 +161,30 @@ li {
   font-family: "Lato", sans-serif;
 }
 .content-head {
+  display: flex;
   font-size: 0.85rem;
   padding-top: 30px;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
-
+.add {
+  border-radius: 12px;
+  background-color: #0089ff;
+  border: 1px solid black;
+  width: 90px;
+  height: 40px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all ease-in 50ms;
+  cursor: pointer;
+}
+.button:hover {
+  width: 100px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: 800;
+}
 .content {
   width: 100%;
   display: flex;
@@ -185,7 +204,6 @@ li {
   width: 90%;
   color: white;
   background-color: $header;
-  font-family: "Lato", sans-serif;
   height: 90px;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
@@ -270,6 +288,7 @@ li {
 .today {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .task-edit {
   display: flex;
@@ -291,7 +310,7 @@ li {
 .bx-box-task:hover .bx {
   fill: $menu-color;
 }
-@media (max-width: 970px) {
+@media (max-width: 967px) {
   .task {
     flex-direction: column;
   }
