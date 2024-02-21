@@ -1,6 +1,6 @@
 import myArray from "../index";
 import createTaskUI from "./taskUI";
-
+import { createTaskObject, DisplayArrayUi } from "./task";
 function HomeUI(array) {
   const mainContent = document.querySelector(".main-content");
   const header = document.createElement("div");
@@ -18,8 +18,8 @@ function HomeUI(array) {
   const ui = createTaskUI(
     "Creating a task",
     "Orbter",
-    "Working on it",
-    "High",
+    "Done",
+    "Low",
     "#Admin",
     "15/2/2024"
   );
@@ -54,7 +54,7 @@ function HomeUI(array) {
   content.append(todayHeadline, today);
 
   // Append to today using append
-  today.append(ui);
+  DisplayArrayUi(myArray, today);
 }
 
 export default HomeUI;

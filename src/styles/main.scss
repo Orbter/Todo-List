@@ -34,7 +34,7 @@ li {
   transition: all 0.3s ease;
   font-family: "Lato", sans-serif;
   z-index: 10;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -145,7 +145,9 @@ li {
 .main-content {
   min-width: calc(100vw - clamp(220px, 40vw, 300px));
   width: calc(100vw - 65px);
-
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   z-index: 1;
 }
 
@@ -157,7 +159,7 @@ li {
   padding: 10px;
   background-color: $header;
   color: white;
-  height: 150px;
+  height: 170px;
   font-family: "Lato", sans-serif;
 }
 .content-head {
@@ -196,7 +198,6 @@ li {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  margin-bottom: 50px;
 }
 .task {
   display: flex;
@@ -209,6 +210,7 @@ li {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 1.1rem;
+  margin-top: 50px;
 }
 .task-border-done {
   border-left: 10px solid $task-status-done;
@@ -311,6 +313,62 @@ li {
 }
 .bx-box-task:hover .bx {
   fill: $menu-color;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $header;
+  color: white;
+  width: 50vw;
+  height: 50vw;
+  justify-content: space-around;
+  padding: 30px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-radius: 17px;
+}
+.form-input {
+  height: 8%;
+  max-height: 45px;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+}
+.overview {
+  z-index: 15;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+.button-submit {
+  border-radius: 12px;
+  background-color: #0089ff;
+  color: white;
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: all ease-in 50ms;
+  cursor: pointer;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+}
+.button-submit:active {
+  font-size: 1.1rem;
+  width: 99%;
+  height: 99%;
+}
+.submit-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
 }
 @media (max-width: 967px) {
   .task {

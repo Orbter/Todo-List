@@ -1,5 +1,7 @@
-function createTaskUI(name, owner, status, priority, tags, date) {
+function createTaskUI(object) {
+  //name, owner, status, priority, tags, date
   //Creating the divs
+  console.log(object);
   const task = document.createElement("div");
   const taskName = document.createElement("div");
   const taskOwner = document.createElement("div");
@@ -11,6 +13,14 @@ function createTaskUI(name, owner, status, priority, tags, date) {
   const taskDelete = document.createElement("div");
   const iconEdit = document.createElement("box-icon");
   const iconDelete = document.createElement("box-icon");
+
+  //inner text
+  taskName.innerText = object.Name;
+  taskOwner.innerText = object.Owner;
+  taskStatus.innerText = object.Status;
+  taskPriority.innerText = object.Priority;
+  taskTags.innerText = object.Tags;
+  taskDate.innerText = object.Date;
   //classes
   updateTaskClass(
     taskStatus,
@@ -25,13 +35,6 @@ function createTaskUI(name, owner, status, priority, tags, date) {
     iconDelete,
     task
   );
-  //inner text
-  taskName.innerText = name;
-  taskOwner.innerText = owner;
-  taskStatus.innerText = status;
-  taskPriority.innerText = priority;
-  taskTags.innerText = tags;
-  taskDate.innerText = date;
   // appending task
 
   task.appendChild(taskName);
@@ -72,7 +75,7 @@ const updateTaskClass = (
     "task-priority-medium"
   );
 
-  if (taskStatus.innerText === "done") {
+  if (taskStatus.innerText === "Done") {
     taskStatus.classList.add("task-status-done", "task-status");
     task.classList.add("task-border-done");
   } else if (taskStatus.innerText === "stuck") {
@@ -83,9 +86,9 @@ const updateTaskClass = (
     task.classList.add("task-border-working");
   }
 
-  if (taskPriority.innerText === "high") {
+  if (taskPriority.innerText === "High") {
     taskPriority.classList.add("task-priority-high", "task-priority");
-  } else if (taskPriority.innerText === "low") {
+  } else if (taskPriority.innerText === "Low") {
     taskPriority.classList.add("task-priority-low", "task-priority");
   } else {
     taskPriority.classList.add("task-priority-medium", "task-priority");

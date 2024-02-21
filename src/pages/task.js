@@ -6,4 +6,12 @@ const createTaskObject = (Name, Owner, Status, Priority, Tags, Date) => ({
   Tags,
   Date,
 });
-export default createTaskObject;
+import createTaskUI from "./taskUI";
+function DisplayArrayUi(array, place) {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    place.append(createTaskUI(element));
+  }
+}
+
+export { createTaskObject, DisplayArrayUi };
