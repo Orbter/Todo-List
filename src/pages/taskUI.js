@@ -107,4 +107,5 @@ const updateTaskClass = (
   iconDelete.classList.add("bx");
   task.classList.add("task");
 };
+
 export default createTaskUI;

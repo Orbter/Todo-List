@@ -1,5 +1,6 @@
 import myArray from "../index";
 import createTaskUI from "./taskUI";
+import userFormUI from "./userForm";
 import { createTaskObject, DisplayArrayUi } from "./task";
 function HomeUI(array) {
   const mainContent = document.querySelector(".main-content");
@@ -38,6 +39,7 @@ function HomeUI(array) {
   todayHeadline.classList.add("today-headline");
   today.classList.add("today");
   add.classList.add("add", "button");
+  add.onclick = userFormUI;
 
   //appending
 

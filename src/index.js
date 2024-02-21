@@ -1,6 +1,7 @@
 import "boxicons";
 import "./styles/main.scss";
 import { createTaskObject, DisplayArrayUi } from "./pages/task";
+import userFormUI from "./pages/userForm";
 import homeUI from "./pages/home";
 const menu = document.getElementById("menu");
 const tab = document.getElementById("tab");
@@ -25,7 +26,6 @@ const ob2 = createTaskObject(
   "#king",
   "21/2/2024"
 );
-//add.addEventListener("click", userTaskUI(), userTaskObj());
 
 myArray.push(ob, ob2);
 console.log(myArray);

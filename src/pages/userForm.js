@@ -1,6 +1,11 @@
+import { RemoveFormUI } from "./remove";
+import { FormToArray } from "./userFormObj";
+import myArray from "../index";
+
 function userFormUI() {
   // Create the form and the main div wrapper
   const form = document.createElement("form");
+  form.id = "form-id";
   const divForm = document.createElement("div");
   divForm.className = "form";
 
@@ -98,9 +103,15 @@ function userFormUI() {
   divSubmitForm.appendChild(buttonSubmit);
   //creating a blur
   const blur = document.createElement("div");
-  blur.classList.add(overview);
+  blur.classList.add("overview");
+  buttonSubmit.onclick = FormToArray(myArray);
+
+  buttonSubmit.onclick = RemoveFormUI(form, blur);
   // Append everything to the main form div and then the form to the document body (or wherever it needs to go)
   divForm.appendChild(divSubmitForm);
   form.appendChild(divForm);
+  document.body.appendChild(blur);
   document.body.appendChild(form); // Or append to another element if needed
 }
+
+export default userFormUI;

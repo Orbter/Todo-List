@@ -198,6 +198,7 @@ li {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 .task {
   display: flex;
@@ -210,7 +211,7 @@ li {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 1.1rem;
-  margin-top: 50px;
+  margin-top: 5px;
 }
 .task-border-done {
   border-left: 10px solid $task-status-done;
@@ -318,7 +319,7 @@ li {
   display: flex;
   flex-direction: column;
   z-index: 20;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -343,7 +344,7 @@ li {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: rgba(59, 56, 56, 0.432);
 }
 .button-submit {
   border-radius: 12px;
@@ -389,6 +390,7 @@ li {
   .task {
     height: fit-content;
     min-width: 200px;
+    margin-top: 50px;
   }
   .task-border-done {
     border: 3px solid $task-status-done;
@@ -407,5 +409,23 @@ li {
   }
   .task-edit {
     height: 50px;
+  }
+  .form {
+    position: fixed;
+  }
+  .overview {
+    position: fixed;
+  }
+  .today-headline {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 426px) {
+  .form {
+    width: 100vw;
+    height: 100vh;
+    min-width: 300px;
+    min-height: 300px;
+    position: fixed;
   }
 }
