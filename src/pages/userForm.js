@@ -1,14 +1,14 @@
-import { RemoveFormUI } from "./remove";
+import { RemoveFormUI, RemoveScreen } from "./remove";
 import { FormToArray } from "./userFormObj";
 import myArray from "../index";
+import HomeUI from "./home";
 
-function userFormUI() {
+function userFormUI(place) {
   // Create the form and the main div wrapper
   const form = document.createElement("form");
   form.id = "form-id";
   const divForm = document.createElement("div");
   divForm.className = "form";
-
   // Create and append the 'Task' input field
   const labelTask = document.createElement("label");
   labelTask.setAttribute("for", "form-task");
@@ -104,14 +104,38 @@ function userFormUI() {
   //creating a blur
   const blur = document.createElement("div");
   blur.classList.add("overview");
-  buttonSubmit.onclick = FormToArray(myArray);
+  blur.addEventListener("click", function (event) {
+    RemoveFormUI(form, blur);
+  });
 
-  buttonSubmit.onclick = RemoveFormUI(form, blur);
+  buttonSubmit.addEventListener("click", function (event) {
+    event.preventDefault(); // Keep this to prevent the form submission
+
+    // Check if the form is valid
+    if (form.checkValidity()) {
+      FormToArray(myArray);
+      RemoveFormUI(form, blur);
+      checkingFunction(place);
+    } else {
+      // Optionally trigger the browser's default validation UI
+      form.reportValidity();
+    }
+  });
+
   // Append everything to the main form div and then the form to the document body (or wherever it needs to go)
   divForm.appendChild(divSubmitForm);
   form.appendChild(divForm);
   document.body.appendChild(blur);
   document.body.appendChild(form); // Or append to another element if needed
+}
+function checkingFunction(place) {
+  const nameOfFunction = "";
+  if (place === "Home") {
+    RemoveScreen();
+    HomeUI(myArray);
+  }
+
+  return nameOfFunction;
 }
 
 export default userFormUI;

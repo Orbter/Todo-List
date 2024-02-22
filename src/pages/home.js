@@ -3,6 +3,7 @@ import createTaskUI from "./taskUI";
 import userFormUI from "./userForm";
 import { createTaskObject, DisplayArrayUi } from "./task";
 function HomeUI(array) {
+  console.log(array);
   const mainContent = document.querySelector(".main-content");
   const header = document.createElement("div");
   const today = document.createElement("div");
@@ -15,15 +16,6 @@ function HomeUI(array) {
   const weekHeadline = document.createElement("h1");
   const allTime = document.createElement("h1");
   const add = document.createElement("button");
-
-  const ui = createTaskUI(
-    "Creating a task",
-    "Orbter",
-    "Done",
-    "Low",
-    "#Admin",
-    "15/2/2024"
-  );
 
   place.innerText = "Home";
   welcome.innerText = "Welcome back, Orbter";
@@ -39,7 +31,7 @@ function HomeUI(array) {
   todayHeadline.classList.add("today-headline");
   today.classList.add("today");
   add.classList.add("add", "button");
-  add.onclick = userFormUI;
+  add.onclick = (event) => userFormUI("Home");
 
   //appending
 
@@ -56,7 +48,7 @@ function HomeUI(array) {
   content.append(todayHeadline, today);
 
   // Append to today using append
-  DisplayArrayUi(myArray, today);
+  DisplayArrayUi(array, today);
 }
 
 export default HomeUI;

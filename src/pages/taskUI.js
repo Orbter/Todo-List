@@ -1,7 +1,6 @@
 function createTaskUI(object) {
   //name, owner, status, priority, tags, date
   //Creating the divs
-  console.log(object);
   const task = document.createElement("div");
   const taskName = document.createElement("div");
   const taskOwner = document.createElement("div");
@@ -19,8 +18,9 @@ function createTaskUI(object) {
   taskOwner.innerText = object.Owner;
   taskStatus.innerText = object.Status;
   taskPriority.innerText = object.Priority;
-  taskTags.innerText = object.Tags;
-  taskDate.innerText = object.Date;
+  taskTags.innerText = checkTag(object.Tags);
+
+  taskDate.innerText = formatDate(object.Date);
   //classes
   updateTaskClass(
     taskStatus,
@@ -78,7 +78,7 @@ const updateTaskClass = (
   if (taskStatus.innerText === "Done") {
     taskStatus.classList.add("task-status-done", "task-status");
     task.classList.add("task-border-done");
-  } else if (taskStatus.innerText === "stuck") {
+  } else if (taskStatus.innerText === "Stuck") {
     taskStatus.classList.add("task-status-stuck", "task-status");
     task.classList.add("task-border-stuck");
   } else {
@@ -107,5 +107,17 @@ const updateTaskClass = (
   iconDelete.classList.add("bx");
   task.classList.add("task");
 };
+function formatDate(dateString) {
+  const [year, month, day] = dateString.split("-");
+  return `${day}/${month}/${year}`;
+}
+
+function checkTag(tagString) {
+  if (tagString.includes("#")) {
+    return tagString;
+  } else {
+    return "#" + `${tagString}`;
+  }
+}
 
 export default createTaskUI;

@@ -16,7 +16,7 @@ const ob = createTaskObject(
   "Working on it",
   "High",
   "#Admin",
-  "15/2/2024"
+  "2024-02-15"
 );
 const ob2 = createTaskObject(
   "testing the ui",
@@ -24,11 +24,10 @@ const ob2 = createTaskObject(
   "Done",
   "Low",
   "#king",
-  "21/2/2024"
+  "2024-02-21"
 );
 
 myArray.push(ob, ob2);
-console.log(myArray);
 
 export default myArray;
-homeUI();
+homeUI(myArray);

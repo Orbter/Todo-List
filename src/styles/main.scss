@@ -149,6 +149,9 @@ li {
   flex-direction: column;
   align-items: end;
   z-index: 1;
+
+  min-height: 100vh;
+  height: fit-content;
 }
 
 .header {
@@ -264,6 +267,9 @@ li {
 }
 .task-priority-low {
   background-color: $task-priority-low;
+}
+.task-status-stuck {
+  background-color: $task-status-stuck;
 }
 .task-status-done {
   background-color: $task-status-done;
@@ -420,7 +426,7 @@ li {
     margin-bottom: 0;
   }
 }
-@media (max-width: 426px) {
+@media (max-width: 800px) {
   .form {
     width: 100vw;
     height: 100vh;
