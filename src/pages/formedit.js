@@ -1,11 +1,12 @@
 import { RemoveFormUI, RemoveScreen } from "./remove";
-import { FormToArray } from "./userFormObj";
+import { EditItem } from "./userFormObj";
 import myArray from "../index";
 import HomeUI from "./home";
 
-function userFormUI(place) {
+function editPopup(place, array, index) {
   // Create the form and the main div wrapper
   //<box-icon type='solid' name='x-circle'></box-icon>
+  const obj = array[index];
 
   const form = document.createElement("form");
   form.id = "form-id";
@@ -35,6 +36,7 @@ function userFormUI(place) {
   inputTask.className = "form-input";
   inputTask.placeholder = "Pick up the dog from the vet";
   inputTask.required = true;
+  inputTask.value = obj.Name;
   divForm.append(labelTask, inputTask);
 
   // Create and append the 'Name' input field
@@ -48,6 +50,7 @@ function userFormUI(place) {
   inputName.className = "form-input";
   inputName.placeholder = "Yotam";
   inputName.required = true;
+  inputName.value = obj.Owner;
   divForm.append(labelName, inputName);
 
   // Create and append the 'Status' select field
@@ -59,6 +62,7 @@ function userFormUI(place) {
   selectStatus.name = "form-status";
   selectStatus.className = "form-input";
   selectStatus.required = true;
+  selectStatus.value = obj.Status;
   ["Done", "Stuck", "Working on it"].forEach((status) => {
     const option = document.createElement("option");
     option.value = status;
@@ -76,6 +80,7 @@ function userFormUI(place) {
   selectPriority.name = "form-priority";
   selectPriority.className = "form-input";
   selectPriority.required = true;
+  selectPriority.value = obj.Priority;
   ["High", "Low", "Medium"].forEach((priority) => {
     const option = document.createElement("option");
     option.value = priority;
@@ -94,6 +99,7 @@ function userFormUI(place) {
   inputTags.className = "form-input";
   inputTags.placeholder = "Admin";
   inputTags.required = true;
+  inputTags.value = obj.Tags;
   divForm.append(labelTags, inputTags);
 
   // Create and append the 'Date' input field
@@ -106,6 +112,7 @@ function userFormUI(place) {
   inputDate.name = "form-date";
   inputDate.className = "form-input";
   inputDate.required = true;
+  inputDate.value = obj.Date;
   divForm.append(labelDate, inputDate);
 
   // Create and append the submit button
@@ -128,7 +135,7 @@ function userFormUI(place) {
 
     // Check if the form is valid
     if (form.checkValidity()) {
-      FormToArray(myArray);
+      EditItem(myArray, index);
       RemoveFormUI(form, blur);
       checkingFunction(place);
     } else {
@@ -151,5 +158,3 @@ function checkingFunction(place) {
 
   return nameOfFunction;
 }
-
-export default userFormUI;

@@ -2,7 +2,9 @@ import myArray from "../index";
 import createTaskUI from "./taskUI";
 import userFormUI from "./userForm";
 import { createTaskObject, DisplayArrayUi } from "./task";
+import { RemoveScreen } from "./remove";
 function HomeUI(array) {
+  RemoveScreen();
   console.log(array);
   const mainContent = document.querySelector(".main-content");
   const header = document.createElement("div");

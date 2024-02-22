@@ -9,4 +9,9 @@ function RemoveScreen() {
     mainContent.removeChild(mainContent.firstChild);
   }
 }
-export { RemoveFormUI, RemoveScreen };
+
+function RemoveItemArray(array, indexToRemove) {
+  array.splice(indexToRemove, 1);
+}
+
+export { RemoveFormUI, RemoveScreen, RemoveItemArray };

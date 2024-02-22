@@ -334,7 +334,7 @@ li {
   width: 50vw;
   height: 50vw;
   justify-content: space-around;
-  padding: 30px;
+  padding: 20px;
   padding-bottom: 20px;
   padding-top: 20px;
   border-radius: 17px;
@@ -344,6 +344,13 @@ li {
   max-height: 45px;
   font-family: "Lato", sans-serif;
   font-size: 1rem;
+}
+.delete-form {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.bx-delete {
 }
 .overview {
   z-index: 15;
@@ -433,5 +440,6 @@ li {
     min-width: 300px;
     min-height: 300px;
     position: fixed;
+    border-radius: 0;
   }
 }
