@@ -4,6 +4,7 @@ import HomeUI from "./home";
 import { AllTask } from "./allTasks";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 import { Today } from "./today";
+import { Upcoming } from "./upcoming";
 let mainArray = loadTasks();
 function userFormUI(place) {
   // Create the form and the main div wrapper
@@ -152,12 +153,12 @@ function checkingFunction(place) {
   const nameOfFunction = "";
   if (place === "Home") {
     HomeUI();
-  }
-  if (place === "All-Task") {
+  } else if (place === "All-Task") {
     AllTask();
-  }
-  if (place === "Today") {
+  } else if (place === "Today") {
     Today();
+  } else if (place === "Upcoming") {
+    Upcoming();
   }
 
   return nameOfFunction;

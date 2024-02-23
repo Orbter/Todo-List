@@ -5,6 +5,7 @@ import { AllTask } from "./pages/allTasks";
 import HomeUI from "./pages/home";
 import userFormUI from "./pages/userForm";
 import { Today } from "./pages/today";
+import { Upcoming } from "./pages/upcoming";
 const menu = document.getElementById("menu");
 const tab = document.getElementById("tab");
 const add = document.querySelector(".add");
@@ -36,6 +37,10 @@ quickAddMenu.addEventListener("click", function () {
 todayMenu.addEventListener("click", function () {
   Today();
   place = "Today";
+});
+upcomingMenu.addEventListener("click", function () {
+  Upcoming();
+  place = "Upcoming";
 });
 
 // Try to load existing tasks from localStorage

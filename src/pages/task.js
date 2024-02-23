@@ -12,6 +12,28 @@ import createTaskUI from "./taskUI";
 import { editPopup } from "./formedit";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 
+function displayArrayUpcomingUi(array, upcoming) {
+  sortArrayByDate(array);
+  const currentDay = new Date();
+  const todayDateOnly = new Date(
+    currentDay.getFullYear(),
+    currentDay.getMonth(),
+    currentDay.getDate()
+  );
+  array.forEach((element, index) => {
+    const objectDate = new Date(element.Date); // For example, 2021-12-01
+    const objectDateOnly = new Date(
+      objectDate.getFullYear(),
+      objectDate.getMonth(),
+      objectDate.getDate()
+    );
+    const newArray = loadTasks();
+    if (objectDateOnly.getTime() !== todayDateOnly.getTime()) {
+      appendingTask(newArray, element, index, upcoming);
+    }
+  });
+}
+
 function displayArrayTodayUi(array, today) {
   sortArrayByDate(array); //assuring the array by date
   const currentDay = new Date();
@@ -44,7 +66,7 @@ function displayArrayAllTimeUi(array, allTime) {
 }
 
 function displayArrayHomeUi(array, today, week, allTime) {
-  sortArrayByDate(array); //assuring the array by date
+  sortArrayByDate(array);
   const currentDay = new Date();
   const todayDateOnly = new Date(
     currentDay.getFullYear(),
@@ -117,4 +139,5 @@ export {
   displayArrayHomeUi,
   displayArrayAllTimeUi,
   displayArrayTodayUi,
+  displayArrayUpcomingUi,
 };
