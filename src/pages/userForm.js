@@ -3,7 +3,7 @@ import { FormToArray } from "./userFormObj";
 import HomeUI from "./home";
 import { AllTask } from "./allTasks";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
-
+import { Today } from "./today";
 let mainArray = loadTasks();
 function userFormUI(place) {
   // Create the form and the main div wrapper
@@ -151,10 +151,13 @@ function userFormUI(place) {
 function checkingFunction(place) {
   const nameOfFunction = "";
   if (place === "Home") {
-    HomeUI(mainArray);
+    HomeUI();
   }
   if (place === "All-Task") {
-    AllTask(mainArray);
+    AllTask();
+  }
+  if (place === "Today") {
+    Today();
   }
 
   return nameOfFunction;

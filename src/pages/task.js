@@ -12,6 +12,29 @@ import createTaskUI from "./taskUI";
 import { editPopup } from "./formedit";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 
+function displayArrayTodayUi(array, today) {
+  sortArrayByDate(array); //assuring the array by date
+  const currentDay = new Date();
+  const todayDateOnly = new Date(
+    currentDay.getFullYear(),
+    currentDay.getMonth(),
+    currentDay.getDate()
+  );
+  array.forEach((element, index) => {
+    const objectDate = new Date(element.Date); // For example, 2021-12-01
+    const objectDateOnly = new Date(
+      objectDate.getFullYear(),
+      objectDate.getMonth(),
+      objectDate.getDate()
+    );
+    const newArray = loadTasks();
+    // Corrected comparison for determining if the event is "today"
+    if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
+      appendingTask(newArray, element, index, today);
+    }
+  });
+}
+
 function displayArrayAllTimeUi(array, allTime) {
   sortArrayByDate(array); //assuring the array by date
   const newArray = loadTasks();
@@ -28,8 +51,7 @@ function displayArrayHomeUi(array, today, week, allTime) {
     currentDay.getMonth(),
     currentDay.getDate()
   );
-  console.log(" this is " + `${array}`);
-  console.log(array);
+
   const { firstDayOfWeek, lastDayOfWeek } = settingTheWeek(currentDay);
 
   array.forEach((element, index) => {
@@ -90,4 +112,9 @@ function sortArrayByDate(array) {
   saveTasks(array);
 }
 
-export { createTaskObject, displayArrayHomeUi, displayArrayAllTimeUi };
+export {
+  createTaskObject,
+  displayArrayHomeUi,
+  displayArrayAllTimeUi,
+  displayArrayTodayUi,
+};

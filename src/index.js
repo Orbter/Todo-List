@@ -2,8 +2,9 @@ import "boxicons";
 import "./styles/main.scss";
 import { createTaskObject, DisplayArrayUi } from "./pages/task";
 import { AllTask } from "./pages/allTasks";
-import homeUI from "./pages/home";
+import HomeUI from "./pages/home";
 import userFormUI from "./pages/userForm";
+import { Today } from "./pages/today";
 const menu = document.getElementById("menu");
 const tab = document.getElementById("tab");
 const add = document.querySelector(".add");
@@ -21,7 +22,7 @@ const upcomingMenu = document.getElementById("upcoming");
 const overdue = document.getElementById("overdue");
 
 homeMenu.addEventListener("click", function () {
-  homeUI();
+  HomeUI();
   place = "Home";
 });
 taskAllMenu.addEventListener("click", function () {
@@ -31,6 +32,10 @@ taskAllMenu.addEventListener("click", function () {
 
 quickAddMenu.addEventListener("click", function () {
   userFormUI(place);
+});
+todayMenu.addEventListener("click", function () {
+  Today();
+  place = "Today";
 });
 
 // Try to load existing tasks from localStorage
@@ -63,7 +68,7 @@ if (storedArray.length === 0) {
 }
 
 // Use storedArray for UI operations
-homeUI(storedArray);
+HomeUI(storedArray);
 console.log(storedArray);
 
 export default storedArray;
