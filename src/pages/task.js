@@ -28,17 +28,33 @@ function DisplayArrayUi(array, place) {
   });
 }
 function displayArrayHome(array, today, week, allTime) {
-  displayArrayDate(array); //assuring the array by date
+  sortArrayByDate(array); //assuring the array by date
   const currentDay = new Date();
+  const todayDateOnly = new Date(
+    currentDay.getFullYear(),
+    currentDay.getMonth(),
+    currentDay.getDate()
+  );
+
   const { firstDayOfWeek, lastDayOfWeek } = settingTheWeek(currentDay);
 
   const dayOfWeek = currentDay.getDate();
 
   array.forEach((element, index) => {
-    const objectDate = new Date(element.Date); //FOR example 2021-12-01;
-    if (objectDate === dayOfWeek) {
+    const objectDate = new Date(element.Date); // For example, 2021-12-01
+    const objectDateOnly = new Date(
+      objectDate.getFullYear(),
+      objectDate.getMonth(),
+      objectDate.getDate()
+    );
+
+    // Corrected comparison for determining if the event is "today"
+    if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
       appendingTask(array, element, index, today);
-    } else if (objectDate >= firstDayOfWeek && objectDate <= lastDayOfWeek) {
+    } else if (
+      objectDateOnly >= firstDayOfWeek &&
+      objectDateOnly <= lastDayOfWeek
+    ) {
       appendingTask(array, element, index, week);
     } else {
       appendingTask(array, element, index, allTime);
@@ -75,26 +91,8 @@ const appendingTask = (array, element, index, place) => {
 
   place.append(taskElement);
 };
-function displayArrayDate(array) {
-  let biggestDate = new Date("1400-01-01");
-  let latestObj;
-  let position = 0;
-  let newArray = [];
-
-  while (array.length !== 0) {
-    array.forEach((element, index) => {
-      const firstDate = new Date(element.Date);
-      if (biggestDate < firstDate) {
-        biggestDate = firstDate;
-        latestObj = element;
-        position = index;
-      }
-    });
-    RemoveItemArray(array, position);
-    newArray.push(latestObj);
-  }
-
-  return newArray;
+function sortArrayByDate(array) {
+  array.sort((a, b) => new Date(a.Date) - new Date(b.Date));
 }
 
-export { createTaskObject, DisplayArrayUi };
+export { createTaskObject, DisplayArrayUi, displayArrayHome };
