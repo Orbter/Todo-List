@@ -1,8 +1,10 @@
 import { RemoveFormUI, RemoveScreen } from "./remove";
 import { FormToArray } from "./userFormObj";
-import myArray from "../index";
 import HomeUI from "./home";
+import { AllTask } from "./allTasks";
+import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 
+let mainArray = loadTasks();
 function userFormUI(place) {
   // Create the form and the main div wrapper
   //<box-icon type='solid' name='x-circle'></box-icon>
@@ -99,7 +101,7 @@ function userFormUI(place) {
   // Create and append the 'Date' input field
   const labelDate = document.createElement("label");
   labelDate.setAttribute("for", "form-date");
-  labelDate.textContent = "Date:";
+  labelDate.textContent = "Due Date:";
   const inputDate = document.createElement("input");
   inputDate.type = "date";
   inputDate.id = "form-date";
@@ -130,7 +132,7 @@ function userFormUI(place) {
 
     // Check if the form is valid
     if (form.checkValidity()) {
-      FormToArray(myArray);
+      FormToArray(mainArray);
       RemoveFormUI(form, blur);
       checkingFunction(place);
     } else {
@@ -145,10 +147,14 @@ function userFormUI(place) {
   document.body.appendChild(blur);
   document.body.appendChild(form); // Or append to another element if needed
 }
+
 function checkingFunction(place) {
   const nameOfFunction = "";
   if (place === "Home") {
-    HomeUI(myArray);
+    HomeUI(mainArray);
+  }
+  if (place === "All-Task") {
+    AllTask(mainArray);
   }
 
   return nameOfFunction;

@@ -1,4 +1,5 @@
-import { createTaskObject, DisplayArrayUi } from "./task";
+import { createTaskObject } from "./task";
+import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 
 function FormToArray(array) {
   const task = document.getElementById("form-task").value;
@@ -8,10 +9,14 @@ function FormToArray(array) {
   const tags = document.getElementById("form-tags").value;
   const date = document.getElementById("form-date").value;
   const obj = createTaskObject(task, name, status, priority, tags, date);
-  array.push(obj);
+  array = savingArray(obj);
 
   return array;
 }
+const savingArray = (newTask) => {
+  addTask(newTask);
+};
+
 function EditItem(array, index) {
   const task = document.getElementById("form-task").value;
   const name = document.getElementById("form-name").value;

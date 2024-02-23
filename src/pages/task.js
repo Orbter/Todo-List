@@ -10,24 +10,17 @@ import HomeUI from "./home";
 import { RemoveFormUI, RemoveScreen, RemoveItemArray } from "./remove";
 import createTaskUI from "./taskUI";
 import { editPopup } from "./formedit";
-function DisplayArrayUi(array, place) {
-  const arrayCopy = array;
-  array.forEach((element, index) => {
-    const taskElement = createTaskUI(element);
-    const deleteButton = taskElement.querySelector(".task-delete");
-    const editButton = taskElement.querySelector(".task-edit");
-    deleteButton.onclick = () => {
-      RemoveItemArray(array, index);
-      HomeUI(array);
-    };
-    editButton.onclick = () => {
-      editPopup("Home", array, index);
-    };
+import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 
-    place.append(taskElement);
+function displayArrayAllTimeUi(array, allTime) {
+  sortArrayByDate(array); //assuring the array by date
+  const newArray = loadTasks();
+  newArray.forEach((element, index) => {
+    appendingTask(newArray, element, index, allTime);
   });
 }
-function displayArrayHome(array, today, week, allTime) {
+
+function displayArrayHomeUi(array, today, week, allTime) {
   sortArrayByDate(array); //assuring the array by date
   const currentDay = new Date();
   const todayDateOnly = new Date(
@@ -35,10 +28,9 @@ function displayArrayHome(array, today, week, allTime) {
     currentDay.getMonth(),
     currentDay.getDate()
   );
-
+  console.log(" this is " + `${array}`);
+  console.log(array);
   const { firstDayOfWeek, lastDayOfWeek } = settingTheWeek(currentDay);
-
-  const dayOfWeek = currentDay.getDate();
 
   array.forEach((element, index) => {
     const objectDate = new Date(element.Date); // For example, 2021-12-01
@@ -47,17 +39,17 @@ function displayArrayHome(array, today, week, allTime) {
       objectDate.getMonth(),
       objectDate.getDate()
     );
-
+    const newArray = loadTasks();
     // Corrected comparison for determining if the event is "today"
     if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
-      appendingTask(array, element, index, today);
+      appendingTask(newArray, element, index, today);
     } else if (
       objectDateOnly >= firstDayOfWeek &&
       objectDateOnly <= lastDayOfWeek
     ) {
-      appendingTask(array, element, index, week);
+      appendingTask(newArray, element, index, week);
     } else {
-      appendingTask(array, element, index, allTime);
+      appendingTask(newArray, element, index, allTime);
     }
   });
 }
@@ -81,9 +73,11 @@ const appendingTask = (array, element, index, place) => {
   const taskElement = createTaskUI(element);
   const deleteButton = taskElement.querySelector(".task-delete");
   const editButton = taskElement.querySelector(".task-edit");
+  const newArray = loadTasks();
   deleteButton.onclick = () => {
-    RemoveItemArray(array, index);
-    HomeUI(array);
+    RemoveItemArray(newArray, index);
+    saveTasks(newArray);
+    HomeUI(newArray);
   };
   editButton.onclick = () => {
     editPopup("Home", array, index);
@@ -93,6 +87,7 @@ const appendingTask = (array, element, index, place) => {
 };
 function sortArrayByDate(array) {
   array.sort((a, b) => new Date(a.Date) - new Date(b.Date));
+  saveTasks(array);
 }
 
-export { createTaskObject, DisplayArrayUi, displayArrayHome };
+export { createTaskObject, displayArrayHomeUi, displayArrayAllTimeUi };
