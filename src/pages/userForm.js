@@ -106,6 +106,8 @@ function userFormUI(place) {
   inputDate.name = "form-date";
   inputDate.className = "form-input";
   inputDate.required = true;
+  inputDate.min = "1900-01-01";
+  inputDate.max = "2125-01-01";
   divForm.append(labelDate, inputDate);
 
   // Create and append the submit button

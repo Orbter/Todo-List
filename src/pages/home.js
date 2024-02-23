@@ -49,7 +49,6 @@ function HomeUI(array) {
   // Append to content using append
   content.append(todayHeadline, today);
 
-  // Append to today using append
   DisplayArrayUi(array, today);
 }
 

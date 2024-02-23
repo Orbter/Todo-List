@@ -62,13 +62,18 @@ function editPopup(place, array, index) {
   selectStatus.name = "form-status";
   selectStatus.className = "form-input";
   selectStatus.required = true;
-  selectStatus.value = obj.Status;
+  const defaultValueStatus = obj.Status; // e.g., "Stuck"
+
   ["Done", "Stuck", "Working on it"].forEach((status) => {
     const option = document.createElement("option");
     option.value = status;
     option.textContent = status;
+    if (status === defaultValueStatus) {
+      option.selected = true;
+    }
     selectStatus.appendChild(option);
   });
+
   divForm.append(labelStatus, selectStatus);
 
   // Create and append the 'Priority' select field
@@ -80,11 +85,14 @@ function editPopup(place, array, index) {
   selectPriority.name = "form-priority";
   selectPriority.className = "form-input";
   selectPriority.required = true;
-  selectPriority.value = obj.Priority;
+  const defaultValuePriority = obj.Priority;
   ["High", "Low", "Medium"].forEach((priority) => {
     const option = document.createElement("option");
     option.value = priority;
     option.textContent = priority;
+    if (priority === defaultValuePriority) {
+      option.selected = true;
+    }
     selectPriority.appendChild(option);
   });
   divForm.append(labelPriority, selectPriority);
@@ -113,6 +121,8 @@ function editPopup(place, array, index) {
   inputDate.className = "form-input";
   inputDate.required = true;
   inputDate.value = obj.Date;
+  inputDate.min = "1900-01-01";
+  inputDate.max = "2125-01-01";
   divForm.append(labelDate, inputDate);
 
   // Create and append the submit button
@@ -158,3 +168,5 @@ function checkingFunction(place) {
 
   return nameOfFunction;
 }
+
+export { editPopup };

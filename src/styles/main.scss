@@ -416,6 +416,7 @@ li {
   }
   .header {
     height: fit-content;
+    width: calc(100vw - 80px);
   }
   .task-delete {
     height: 50px;
