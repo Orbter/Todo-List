@@ -22,15 +22,15 @@
         <li class="menu-content">
           <div><h2 class="menu-headline">Main Menu</h2></div>
           <ul class="menu-main-list">
-            <li class="bx-box">
+            <li class="bx-box" id="home">
               <box-icon type="solid" name="home" class="bx"></box-icon>
-              <span class="bx-text">Home</span>
+              <span class="bx-text active">Home</span>
             </li>
-            <li class="bx-box">
+            <li class="bx-box" id="all-task">
               <box-icon type="solid" name="check-square" class="bx"></box-icon>
               <span class="bx-text">All Task</span>
             </li>
-            <li class="bx-box">
+            <li class="bx-box" id="quick-add">
               <box-icon name="plus-medical" class="bx"></box-icon>
               <span class="bx-text">Quick Add</span>
             </li>
@@ -39,15 +39,15 @@
         <li class="menu-content">
           <div><h2 class="menu-headline">Tasks Overview</h2></div>
           <ul class="menu-main-list">
-            <li class="bx-box">
+            <li class="bx-box" id="today">
               <box-icon type="solid" name="calendar-week" class="bx"></box-icon>
               <span class="bx-text">Today</span>
             </li>
-            <li class="bx-box">
+            <li class="bx-box" id="upcoming">
               <box-icon type="solid" name="calendar-plus" class="bx"></box-icon>
               <span class="bx-text">Upcoming</span>
             </li>
-            <li class="bx-box">
+            <li class="bx-box" id="overdue">
               <box-icon type="solid" name="calendar-x" class="bx"></box-icon>
               <span class="bx-text">Overdue</span>
             </li>
@@ -55,36 +55,6 @@
         </li>
       </ul>
     </nav>
-    <div class="main-content">
-      <header>
-        <div class="header">
-          <div class="header-headline"><h1>Home</h1></div>
-          <div class="welcome-back"><h2>Welcome back, Orbter</h2></div>
-          <div class="content-head"><h1>Start Another Task!</h1></div>
-        </div>
-      </header>
-      <div class="content-container">
-        <main class="content">
-          <h1 class="today-headline">Today</h1>
-
-          <div class="today">
-            <div class="task">
-              <div class="task-name">Creating a task</div>
-              <div class="task-owner">Orbter</div>
-              <div class="task-status">Working on it</div>
-              <div class="task-priority">High</div>
-              <div class="task-tags">#Admin</div>
-              <div class="task-date">15/2/2024</div>
-              <div class="task-edit">
-                <box-icon type="solid" name="edit-alt"></box-icon>
-              </div>
-              <div class="task-delete">
-                <box-icon type="solid" name="x-square"></box-icon>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
-    </div>
+    <div class="main-content"></div>
   </body>
 </html>

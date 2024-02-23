@@ -6,6 +6,7 @@ import HomeUI from "./pages/home";
 import userFormUI from "./pages/userForm";
 import { Today } from "./pages/today";
 import { Upcoming } from "./pages/upcoming";
+import { Overdue } from "./pages/Overdue";
 const menu = document.getElementById("menu");
 const tab = document.getElementById("tab");
 const add = document.querySelector(".add");
@@ -42,12 +43,16 @@ upcomingMenu.addEventListener("click", function () {
   Upcoming();
   place = "Upcoming";
 });
+overdue.addEventListener("click", function () {
+  Overdue();
+  place = "Overdue";
+});
 
 // Try to load existing tasks from localStorage
 let storedArray = JSON.parse(localStorage.getItem("myArray")) || [];
 
 // Only populate the array with initial objects if it's empty
-if (storedArray.length === 0) {
+if (storedArray.length === 0 || storedArray === undefined) {
   const ob = createTaskObject(
     "Creating a task",
     "Orbter",
@@ -65,16 +70,11 @@ if (storedArray.length === 0) {
     "2024-02-21"
   );
 
-  // Populate the array with initial objects
   storedArray.push(ob, ob2);
 
-  // Save the newly populated array to localStorage
   localStorage.setItem("myArray", JSON.stringify(storedArray));
 }
 
-// Use storedArray for UI operations
-HomeUI(storedArray);
+HomeUI();
 console.log(storedArray);
-
-export default storedArray;
-console.log(myArray);
+export default place;
