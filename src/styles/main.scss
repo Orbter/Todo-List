@@ -129,7 +129,7 @@ li {
 }
 .sidebar-active {
   width: 65px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .bx-box:hover {
@@ -155,11 +155,13 @@ li {
 }
 
 .header {
-  width: calc(100vw - 80px);
+  width: calc(100vw - 65px);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding: 10px;
+  padding-left: 30px;
+
   background-color: $header;
   color: white;
   height: 170px;
@@ -418,7 +420,7 @@ li {
   }
   .header {
     height: fit-content;
-    width: calc(100vw - 80px);
+    width: calc(100vw - 65px);
   }
   .task-delete {
     height: 50px;
