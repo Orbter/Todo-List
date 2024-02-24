@@ -1,17 +1,25 @@
-const createTaskObject = (Name, Owner, Status, Priority, Tags, Date) => ({
+const createTaskObject = (
   Name,
   Owner,
   Status,
   Priority,
   Tags,
   Date,
+  Project
+) => ({
+  Name,
+  Owner,
+  Status,
+  Priority,
+  Tags,
+  Date,
+  Project,
 });
 import HomeUI from "./home";
 import { RemoveFormUI, RemoveScreen, RemoveItemArray } from "./remove";
 import createTaskUI from "./taskUI";
 import { editPopup, checkingFunction } from "./formedit";
 import { loadTasks, addTask, saveTasks, removeTaskArray } from "./taskStorage"; // Hypothetical taskStorage module
-import place from "../index";
 
 function displayArrayUpcomingUi(array, upcoming) {
   sortArrayByDate(array); //assuring the array by date
@@ -97,7 +105,7 @@ function displayArrayAllTimeUi(array, allTime) {
   });
 }
 
-function displayArrayHomeUi(array, today, week, allTime) {
+function displayArrayHomeUi(array, today, week, allTime, selectedValue) {
   const placeName = "Home";
 
   sortArrayByDate(array); //assuring the array by date
@@ -117,17 +125,19 @@ function displayArrayHomeUi(array, today, week, allTime) {
       objectDate.getMonth(),
       objectDate.getDate()
     );
+
     const newArray = loadTasks();
-    // Corrected comparison for determining if the event is "today"
-    if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, today, placeName);
-    } else if (
-      objectDateOnly >= firstDayOfWeek &&
-      objectDateOnly <= lastDayOfWeek
-    ) {
-      appendingTask(newArray, element, index, week, placeName);
-    } else {
-      appendingTask(newArray, element, index, allTime, placeName);
+    if (element.Project === selectedValue) {
+      if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, today, placeName);
+      } else if (
+        objectDateOnly >= firstDayOfWeek &&
+        objectDateOnly <= lastDayOfWeek
+      ) {
+        appendingTask(newArray, element, index, week, placeName);
+      } else {
+        appendingTask(newArray, element, index, allTime, placeName);
+      }
     }
   });
 }

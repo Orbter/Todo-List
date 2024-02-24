@@ -2,7 +2,7 @@ import { RemoveFormUI, RemoveScreen } from "./remove";
 import { FormToArray } from "./userFormObj";
 import HomeUI from "./home";
 import { AllTask } from "./allTasks";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
+import { loadTasks, addTask, saveTasks, loadProject } from "./taskStorage"; // Hypothetical taskStorage module
 import { Today } from "./today";
 import { Upcoming } from "./upcoming";
 import { Overdue } from "./Overdue";
@@ -88,6 +88,18 @@ function userFormUI(place) {
   });
   divForm.append(labelPriority, selectPriority);
 
+  const labelProject = document.createElement("label");
+  labelProject.setAttribute("for", "form-project");
+  labelProject.textContent = "Project";
+  const selectProject = document.createElement("select");
+  selectProject.id = "form-project";
+  selectProject.name = "form-project";
+  selectProject.className = "form-input";
+  selectProject.required = true;
+  const newProjects = loadProject();
+  optionCrater(newProjects, selectProject);
+  divForm.append(labelProject, selectProject);
+
   // Create and append the 'Tag' input field
   const labelTags = document.createElement("label");
   labelTags.setAttribute("for", "form-tags");
@@ -164,4 +176,14 @@ function checkingFunction(place) {
   }
 }
 
-export default userFormUI;
+function optionCrater(project, select) {
+  const projects = loadProject();
+  projects.forEach((obj) => {
+    const option = document.createElement("option");
+    option.value = obj;
+    option.textContent = obj;
+    select.appendChild(option);
+  });
+}
+
+export { userFormUI, optionCrater };

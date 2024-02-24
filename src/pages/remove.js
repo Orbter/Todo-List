@@ -9,9 +9,14 @@ function RemoveScreen() {
     mainContent.removeChild(mainContent.firstChild);
   }
 }
+function RemoveContent(content) {
+  while (content.firstChild) {
+    content.removeChild(content.firstChild);
+  }
+}
 
 function RemoveItemArray(array, indexToRemove) {
   array.splice(indexToRemove, 1);
 }
 
-export { RemoveFormUI, RemoveScreen, RemoveItemArray };
+export { RemoveFormUI, RemoveScreen, RemoveItemArray, RemoveContent };

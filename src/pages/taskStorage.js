@@ -27,3 +27,28 @@ export function removeTaskArray(index) {
 export function saveTasks(tasks) {
   localStorage.setItem("myArray", JSON.stringify(tasks));
 }
+
+export function saveProject(newProject) {
+  localStorage.setItem("projects", JSON.stringify(newProject));
+}
+
+export function loadProject() {
+  let array = ["Todo List"];
+  const myLocalStorage = localStorage.getItem("projects");
+  console.log(localStorage.getItem("projects"));
+  console.log(typeof myLocalStorage);
+  if (myLocalStorage === undefined || myLocalStorage === null) {
+    return array;
+  } else {
+    return JSON.parse(localStorage.getItem("projects"));
+  }
+}
+export function addProject(project) {
+  const allProjects = loadProject();
+  if (allProjects.includes(project)) {
+    return;
+  } else {
+    allProjects.push(project);
+    saveProject(allProjects);
+  }
+}

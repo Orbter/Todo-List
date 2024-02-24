@@ -1,6 +1,5 @@
 import { RemoveFormUI, RemoveScreen } from "./remove";
 import { EditItem } from "./userFormObj";
-import myArray from "../index";
 import HomeUI from "./home";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 import { AllTask } from "./allTasks";

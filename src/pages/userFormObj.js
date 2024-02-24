@@ -8,7 +8,16 @@ function FormToArray(array) {
   const priority = document.getElementById("form-priority").value;
   const tags = document.getElementById("form-tags").value;
   const date = document.getElementById("form-date").value;
-  const obj = createTaskObject(task, name, status, priority, tags, date);
+  const project = document.getElementById("form-project").value;
+  const obj = createTaskObject(
+    task,
+    name,
+    status,
+    priority,
+    tags,
+    date,
+    project
+  );
   array = savingArray(obj);
 
   return array;
@@ -24,7 +33,17 @@ function EditItem(array, index) {
   const priority = document.getElementById("form-priority").value;
   const tags = document.getElementById("form-tags").value;
   const date = document.getElementById("form-date").value;
-  const obj = createTaskObject(task, name, status, priority, tags, date);
+  const project = document.getElementById("form-project").value;
+
+  const obj = createTaskObject(
+    task,
+    name,
+    status,
+    priority,
+    tags,
+    date,
+    project
+  );
 
   console.log("hey");
   console.log(array);

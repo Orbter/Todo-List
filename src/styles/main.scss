@@ -153,7 +153,27 @@ li {
   min-height: 100vh;
   height: fit-content;
 }
-
+.project-container {
+  display: flex;
+  justify-content: space-around;
+}
+.new-project {
+  background-color: $menu-text;
+  border-radius: 5px;
+  width: 100px;
+  height: 35px;
+  color: $menu-color;
+  cursor: pointer;
+  border: 1px solid $menu-color;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+.new-project:active {
+  width: 31%;
+  font-size: 0.9rem;
+  height: 34px;
+}
 .header {
   width: calc(100vw - 65px);
   box-sizing: border-box;
@@ -279,7 +299,14 @@ li {
 .task-status-working {
   background-color: $task-status-working;
 }
-
+#form-project {
+  height: 35px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  min-width: 100px;
+  width: fit-content;
+  max-width: 150px;
+}
 .task-tags {
   border-right: 1px solid black;
   display: flex;

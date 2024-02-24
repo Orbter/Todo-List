@@ -1,7 +1,7 @@
-import userFormUI from "./userForm";
+import { userFormUI, optionCrater } from "./userForm";
 import { createTaskObject, displayArrayHomeUi } from "./task";
-import { RemoveScreen } from "./remove";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
+import { RemoveScreen, RemoveContent } from "./remove";
+import { loadTasks, addTask, saveTasks, loadProject } from "./taskStorage"; // Hypothetical taskStorage module
 
 function HomeUI() {
   RemoveScreen();
@@ -38,6 +38,25 @@ function HomeUI() {
   thisWeek.classList.add("today");
   allTime.classList.add("today");
   add.classList.add("add", "button");
+
+  const selectProject = document.createElement("select");
+  selectProject.id = "form-project";
+  selectProject.name = "form-project";
+  selectProject.className = "form-input";
+  selectProject.required = true;
+  const newProjects = loadProject();
+  optionCrater(newProjects, selectProject);
+
+  selectProject.addEventListener("change", (event) => {
+    RemoveContent(today);
+    RemoveContent(thisWeek);
+    RemoveContent(allTime);
+    const showingArray = loadTasks();
+    const selected = selectProject.value;
+    console.log(selected);
+    displayArrayHomeUi(showingArray, today, thisWeek, allTime, selected);
+  });
+
   add.onclick = (event) => userFormUI("Home");
 
   //appending
@@ -46,8 +65,7 @@ function HomeUI() {
 
   header.append(place, welcome, contentHead);
 
-  contentHead.append(headText, add);
-
+  contentHead.append(headText, selectProject);
   content.append(
     todayHeadline,
     today,
@@ -56,8 +74,10 @@ function HomeUI() {
     allTimeHeadline,
     allTime
   );
+
   const showingArray = loadTasks();
-  displayArrayHomeUi(showingArray, today, thisWeek, allTime);
+  const selected = selectProject.value;
+  displayArrayHomeUi(showingArray, today, thisWeek, allTime, selected);
 }
 
 export default HomeUI;
