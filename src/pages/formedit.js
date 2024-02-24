@@ -3,7 +3,10 @@ import { EditItem } from "./userFormObj";
 import myArray from "../index";
 import HomeUI from "./home";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
-
+import { AllTask } from "./allTasks";
+import { Overdue } from "./Overdue";
+import { Upcoming } from "./upcoming";
+import { Today } from "./today";
 function editPopup(place, array, index) {
   let newArray = loadTasks();
   // Create the form and the main div wrapper

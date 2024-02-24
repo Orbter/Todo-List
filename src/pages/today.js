@@ -14,6 +14,7 @@ function Today() {
   const place = document.createElement("h1");
   const todayHeadline = document.createElement("h1");
   const add = document.createElement("button");
+
   place.innerText = "Today Tasks";
   headText.innerText = "Finish this tasks today!";
   todayHeadline.innerText = "All tasks Due to today";
