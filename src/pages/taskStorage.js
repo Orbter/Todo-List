@@ -1,6 +1,11 @@
 // taskStorage.js
 export function loadTasks() {
-  return JSON.parse(localStorage.getItem("myArray")) || [];
+  let array = [];
+  if (localStorage.getItem("myArray") === "undefined") {
+    return array;
+  } else {
+    return JSON.parse(localStorage.getItem("myArray")) || [];
+  }
 }
 
 export function addTask(task) {

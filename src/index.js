@@ -7,6 +7,7 @@ import userFormUI from "./pages/userForm";
 import { Today } from "./pages/today";
 import { Upcoming } from "./pages/upcoming";
 import { Overdue } from "./pages/Overdue";
+import { loadTasks, addTask, saveTasks } from "./pages/taskStorage";
 const menu = document.getElementById("menu");
 const tab = document.getElementById("tab");
 const add = document.querySelector(".add");
@@ -14,7 +15,6 @@ menu.addEventListener("click", function () {
   tab.classList.toggle("sidebar-active");
 });
 let myArray = [];
-
 let place = "";
 const homeMenu = document.getElementById("home");
 const taskAllMenu = document.getElementById("all-task");
@@ -49,10 +49,10 @@ overdue.addEventListener("click", function () {
 });
 
 // Try to load existing tasks from localStorage
-let storedArray = JSON.parse(localStorage.getItem("myArray")) || [];
-
+let storedArray = loadTasks();
+console.log(saveTasks);
 // Only populate the array with initial objects if it's empty
-if (storedArray.length === 0 || storedArray === undefined) {
+if (storedArray.length === 0) {
   const ob = createTaskObject(
     "Creating a task",
     "Orbter",

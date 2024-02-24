@@ -13,6 +13,8 @@ import { editPopup } from "./formedit";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 import place from "../index";
 
+function displayArrayUpcomingUi() {}
+
 function displayArrayOverdueUi(array, overdue) {
   sortArrayByDate(array);
   const currentDay = new Date();
@@ -32,28 +34,6 @@ function displayArrayOverdueUi(array, overdue) {
     // Corrected comparison for determining if the event is "today"
     if (objectDateOnly.getTime() > todayDateOnly.getTime()) {
       appendingTask(newArray, element, index, overdue);
-    }
-  });
-}
-
-function displayArrayUpcomingUi(array, upcoming) {
-  sortArrayByDate(array);
-  const currentDay = new Date();
-  const todayDateOnly = new Date(
-    currentDay.getFullYear(),
-    currentDay.getMonth(),
-    currentDay.getDate()
-  );
-  array.forEach((element, index) => {
-    const objectDate = new Date(element.Date); // For example, 2021-12-01
-    const objectDateOnly = new Date(
-      objectDate.getFullYear(),
-      objectDate.getMonth(),
-      objectDate.getDate()
-    );
-    const newArray = loadTasks();
-    if (objectDateOnly.getTime() !== todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, upcoming);
     }
   });
 }
@@ -90,7 +70,7 @@ function displayArrayAllTimeUi(array, allTime) {
 }
 
 function displayArrayHomeUi(array, today, week, allTime) {
-  sortArrayByDate(array);
+  sortArrayByDate(array); //assuring the array by date
   const currentDay = new Date();
   const todayDateOnly = new Date(
     currentDay.getFullYear(),
@@ -163,6 +143,5 @@ export {
   displayArrayHomeUi,
   displayArrayAllTimeUi,
   displayArrayTodayUi,
-  displayArrayUpcomingUi,
   displayArrayOverdueUi,
 };

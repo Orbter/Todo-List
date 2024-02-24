@@ -2,7 +2,6 @@ import userFormUI from "./userForm";
 import { createTaskObject, displayArrayAllTimeUi } from "./task";
 import { RemoveScreen } from "./remove";
 import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
-import { displayArrayUpcomingUi } from "./task";
 
 function Upcoming() {
   RemoveScreen();
