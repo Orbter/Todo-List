@@ -7,7 +7,12 @@ import userFormUI from "./pages/userForm";
 import { Today } from "./pages/today";
 import { Upcoming } from "./pages/upcoming";
 import { Overdue } from "./pages/Overdue";
-import { loadTasks, addTask, saveTasks } from "./pages/taskStorage";
+import {
+  loadTasks,
+  addTask,
+  saveTasks,
+  removeTaskArray,
+} from "./pages/taskStorage";
 const menu = document.getElementById("menu");
 const tab = document.getElementById("tab");
 const add = document.querySelector(".add");
@@ -74,7 +79,6 @@ if (storedArray.length === 0) {
 
   localStorage.setItem("myArray", JSON.stringify(storedArray));
 }
-
 HomeUI();
 console.log(storedArray);
 export default place;

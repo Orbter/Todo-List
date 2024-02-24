@@ -2,8 +2,10 @@ import { RemoveFormUI, RemoveScreen } from "./remove";
 import { EditItem } from "./userFormObj";
 import myArray from "../index";
 import HomeUI from "./home";
+import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
 
 function editPopup(place, array, index) {
+  let newArray = loadTasks();
   // Create the form and the main div wrapper
   //<box-icon type='solid' name='x-circle'></box-icon>
   const obj = array[index];
@@ -145,7 +147,7 @@ function editPopup(place, array, index) {
 
     // Check if the form is valid
     if (form.checkValidity()) {
-      EditItem(myArray, index);
+      EditItem(newArray, index);
       RemoveFormUI(form, blur);
       checkingFunction(place);
     } else {
@@ -161,12 +163,17 @@ function editPopup(place, array, index) {
   document.body.appendChild(form); // Or append to another element if needed
 }
 function checkingFunction(place) {
-  const nameOfFunction = "";
   if (place === "Home") {
-    HomeUI(myArray);
+    HomeUI();
+  } else if (place === "All-Task") {
+    AllTask();
+  } else if (place === "Today") {
+    Today();
+  } else if (place === "Upcoming") {
+    Upcoming();
+  } else if (place === "Overdue") {
+    Overdue();
   }
-
-  return nameOfFunction;
 }
 
-export { editPopup };
+export { editPopup, checkingFunction };

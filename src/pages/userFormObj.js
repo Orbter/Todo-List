@@ -1,5 +1,5 @@
 import { createTaskObject } from "./task";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
+import { loadTasks, addTask, saveTasks, editTaskArray } from "./taskStorage"; // Hypothetical taskStorage module
 
 function FormToArray(array) {
   const task = document.getElementById("form-task").value;
@@ -26,7 +26,11 @@ function EditItem(array, index) {
   const date = document.getElementById("form-date").value;
   const obj = createTaskObject(task, name, status, priority, tags, date);
 
+  console.log("hey");
+  console.log(array);
+  console.log(array[index]);
   array[index] = obj;
+  editTaskArray(obj, index);
 }
 
 export { FormToArray, EditItem };

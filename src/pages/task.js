@@ -9,14 +9,13 @@ const createTaskObject = (Name, Owner, Status, Priority, Tags, Date) => ({
 import HomeUI from "./home";
 import { RemoveFormUI, RemoveScreen, RemoveItemArray } from "./remove";
 import createTaskUI from "./taskUI";
-import { editPopup } from "./formedit";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
+import { editPopup, checkingFunction } from "./formedit";
+import { loadTasks, addTask, saveTasks, removeTaskArray } from "./taskStorage"; // Hypothetical taskStorage module
 import place from "../index";
 
-function displayArrayUpcomingUi() {}
-
-function displayArrayOverdueUi(array, overdue) {
-  sortArrayByDate(array);
+function displayArrayUpcomingUi(array, upcoming) {
+  sortArrayByDate(array); //assuring the array by date
+  const placeName = "Upcoming";
   const currentDay = new Date();
   const todayDateOnly = new Date(
     currentDay.getFullYear(),
@@ -33,12 +32,39 @@ function displayArrayOverdueUi(array, overdue) {
     const newArray = loadTasks();
     // Corrected comparison for determining if the event is "today"
     if (objectDateOnly.getTime() > todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, overdue);
+      appendingTask(newArray, element, index, upcoming, placeName);
+    }
+  });
+}
+
+function displayArrayOverdueUi(array, overdue) {
+  const placeName = "Overdue";
+
+  sortArrayByDate(array);
+  const currentDay = new Date();
+  const todayDateOnly = new Date(
+    currentDay.getFullYear(),
+    currentDay.getMonth(),
+    currentDay.getDate()
+  );
+  array.forEach((element, index) => {
+    const objectDate = new Date(element.Date); // For example, 2021-12-01
+    const objectDateOnly = new Date(
+      objectDate.getFullYear(),
+      objectDate.getMonth(),
+      objectDate.getDate()
+    );
+
+    const newArray = loadTasks();
+    if (objectDateOnly.getTime() < todayDateOnly.getTime()) {
+      appendingTask(newArray, element, index, overdue, placeName);
     }
   });
 }
 
 function displayArrayTodayUi(array, today) {
+  const placeName = "Today";
+
   sortArrayByDate(array); //assuring the array by date
   const currentDay = new Date();
   const todayDateOnly = new Date(
@@ -56,20 +82,24 @@ function displayArrayTodayUi(array, today) {
     const newArray = loadTasks();
     // Corrected comparison for determining if the event is "today"
     if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, today);
+      appendingTask(newArray, element, index, today, placeName);
     }
   });
 }
 
 function displayArrayAllTimeUi(array, allTime) {
+  const placeName = "All-Task";
+
   sortArrayByDate(array); //assuring the array by date
   const newArray = loadTasks();
   newArray.forEach((element, index) => {
-    appendingTask(newArray, element, index, allTime);
+    appendingTask(newArray, element, index, allTime, placeName);
   });
 }
 
 function displayArrayHomeUi(array, today, week, allTime) {
+  const placeName = "Home";
+
   sortArrayByDate(array); //assuring the array by date
   const currentDay = new Date();
   const todayDateOnly = new Date(
@@ -90,14 +120,14 @@ function displayArrayHomeUi(array, today, week, allTime) {
     const newArray = loadTasks();
     // Corrected comparison for determining if the event is "today"
     if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, today);
+      appendingTask(newArray, element, index, today, placeName);
     } else if (
       objectDateOnly >= firstDayOfWeek &&
       objectDateOnly <= lastDayOfWeek
     ) {
-      appendingTask(newArray, element, index, week);
+      appendingTask(newArray, element, index, week, placeName);
     } else {
-      appendingTask(newArray, element, index, allTime);
+      appendingTask(newArray, element, index, allTime, placeName);
     }
   });
 }
@@ -117,18 +147,17 @@ const settingTheWeek = (today) => {
   return { firstDayOfWeek, lastDayOfWeek };
 };
 
-const appendingTask = (array, element, index, place) => {
+const appendingTask = (array, element, index, place, placeName) => {
   const taskElement = createTaskUI(element);
   const deleteButton = taskElement.querySelector(".task-delete");
   const editButton = taskElement.querySelector(".task-edit");
   const newArray = loadTasks();
   deleteButton.onclick = () => {
-    RemoveItemArray(newArray, index);
-    saveTasks(newArray);
-    HomeUI(newArray);
+    removeTaskArray(index);
+    checkingFunction(placeName);
   };
   editButton.onclick = () => {
-    editPopup(place, array, index);
+    editPopup(placeName, array, index);
   };
 
   place.append(taskElement);
@@ -144,4 +173,5 @@ export {
   displayArrayAllTimeUi,
   displayArrayTodayUi,
   displayArrayOverdueUi,
+  displayArrayUpcomingUi,
 };
