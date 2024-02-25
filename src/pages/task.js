@@ -95,13 +95,18 @@ function displayArrayTodayUi(array, today) {
   });
 }
 
-function displayArrayAllTimeUi(array, allTime) {
+function displayArrayAllTimeUi(array, allTime, selectedValue) {
   const placeName = "All-Task";
 
   sortArrayByDate(array); //assuring the array by date
   const newArray = loadTasks();
+
   newArray.forEach((element, index) => {
-    appendingTask(newArray, element, index, allTime, placeName);
+    if (selectedValue === "All Task") {
+      appendingTask(newArray, element, index, allTime, placeName);
+    } else if (element.Project === selectedValue) {
+      appendingTask(newArray, element, index, allTime, placeName);
+    }
   });
 }
 
@@ -127,7 +132,18 @@ function displayArrayHomeUi(array, today, week, allTime, selectedValue) {
     );
 
     const newArray = loadTasks();
-    if (element.Project === selectedValue) {
+    if (selectedValue === "All Task") {
+      if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, today, placeName);
+      } else if (
+        objectDateOnly >= firstDayOfWeek &&
+        objectDateOnly <= lastDayOfWeek
+      ) {
+        appendingTask(newArray, element, index, week, placeName);
+      } else {
+        appendingTask(newArray, element, index, allTime, placeName);
+      }
+    } else if (element.Project === selectedValue) {
       if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
         appendingTask(newArray, element, index, today, placeName);
       } else if (

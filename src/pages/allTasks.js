@@ -1,7 +1,7 @@
-import { userFormUI } from "./userForm";
+import { userFormUI, optionCrater } from "./userForm";
 import { createTaskObject, displayArrayAllTimeUi } from "./task";
-import { RemoveScreen } from "./remove";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
+import { RemoveScreen, RemoveContent } from "./remove";
+import { loadTasks, addTask, saveTasks, loadProject } from "./taskStorage"; // Hypothetical taskStorage module
 
 function AllTask() {
   RemoveScreen();
@@ -14,10 +14,18 @@ function AllTask() {
   const place = document.createElement("h1");
   const allTimeHeadline = document.createElement("h1");
   const add = document.createElement("button");
+  const selectProject = document.createElement("select");
+  const newProjects = loadProject();
+
   place.innerText = "All Tasks";
   headText.innerText = "See all the tasks you have!";
   allTimeHeadline.innerText = "All Time";
   add.innerText = "add a task!";
+
+  selectProject.id = "form-project";
+  selectProject.name = "form-project";
+  selectProject.className = "form-input";
+  selectProject.required = true;
 
   content.classList.add("content");
   header.classList.add("header");
@@ -25,15 +33,23 @@ function AllTask() {
   allTimeHeadline.classList.add("today-headline");
   allTime.classList.add("today");
   add.classList.add("add", "button");
-  add.onclick = (event) => userFormUI("All-Task");
+  optionCrater(newProjects, selectProject);
   mainContent.append(header, content);
+  selectProject.addEventListener("change", (event) => {
+    RemoveContent(allTime);
+    const showingArray = loadTasks();
+    const selected = selectProject.value;
+    console.log(selected);
+    displayArrayAllTimeUi(showingArray, allTime, selected);
+  });
 
   header.append(place, contentHead);
 
-  contentHead.append(headText, add);
+  contentHead.append(headText, selectProject);
+  const selected = selectProject.value;
 
   content.append(allTimeHeadline, allTime);
   const showingArray = loadTasks();
-  displayArrayAllTimeUi(showingArray, allTime);
+  displayArrayAllTimeUi(showingArray, allTime, selected);
 }
 export { AllTask };

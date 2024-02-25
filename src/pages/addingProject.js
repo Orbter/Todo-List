@@ -82,11 +82,6 @@ function addingProjectUi(place) {
   });
 }
 
-function addingProjectArray() {
-  const project = document.getElementById("creating-project").value;
-  newProject.push(project);
-  console.log(newProject);
-}
 function checkingFunction(place) {
   if (place === "Home") {
     HomeUI();
