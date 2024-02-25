@@ -57,8 +57,6 @@ function HomeUI() {
     displayArrayHomeUi(showingArray, today, thisWeek, allTime, selected);
   });
 
-  add.onclick = (event) => userFormUI("Home");
-
   //appending
 
   mainContent.append(header, content);

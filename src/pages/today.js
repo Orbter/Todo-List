@@ -1,6 +1,6 @@
-import { userFormUI } from "./userForm";
-import { RemoveScreen } from "./remove";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
+import { userFormUI, optionCrater } from "./userForm";
+import { RemoveScreen, RemoveContent } from "./remove";
+import { loadTasks, addTask, saveTasks, loadProject } from "./taskStorage"; // Hypothetical taskStorage module
 import { displayArrayTodayUi } from "./task";
 
 function Today() {
@@ -14,7 +14,13 @@ function Today() {
   const place = document.createElement("h1");
   const todayHeadline = document.createElement("h1");
   const add = document.createElement("button");
+  const selectProject = document.createElement("select");
+  const newProjects = loadProject();
 
+  selectProject.id = "form-project";
+  selectProject.name = "form-project";
+  selectProject.className = "form-input";
+  selectProject.required = true;
   place.innerText = "Today Tasks";
   headText.innerText = "Finish this tasks today!";
   todayHeadline.innerText = "All tasks Due to today";
@@ -29,12 +35,24 @@ function Today() {
   add.onclick = (event) => userFormUI("Today");
   mainContent.append(header, content);
 
+  optionCrater(newProjects, selectProject);
+
+  selectProject.addEventListener("change", (event) => {
+    RemoveContent(today);
+    const showingArray = loadTasks();
+    const selected = selectProject.value;
+    console.log(selected);
+    displayArrayTodayUi(showingArray, today, selected);
+  });
+
   header.append(place, contentHead);
 
-  contentHead.append(headText, add);
+  contentHead.append(headText, selectProject);
 
   content.append(todayHeadline, today);
   const showingArray = loadTasks();
-  displayArrayTodayUi(showingArray, today);
+  const selected = selectProject.value;
+
+  displayArrayTodayUi(showingArray, today, selected);
 }
 export { Today };

@@ -21,7 +21,7 @@ import createTaskUI from "./taskUI";
 import { editPopup, checkingFunction } from "./formedit";
 import { loadTasks, addTask, saveTasks, removeTaskArray } from "./taskStorage"; // Hypothetical taskStorage module
 
-function displayArrayUpcomingUi(array, upcoming) {
+function displayArrayUpcomingUi(array, upcoming, selectedValue) {
   sortArrayByDate(array); //assuring the array by date
   const placeName = "Upcoming";
   const currentDay = new Date();
@@ -37,10 +37,17 @@ function displayArrayUpcomingUi(array, upcoming) {
       objectDate.getMonth(),
       objectDate.getDate()
     );
+
     const newArray = loadTasks();
     // Corrected comparison for determining if the event is "today"
-    if (objectDateOnly.getTime() > todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, upcoming, placeName);
+    if (selectedValue === "All Task") {
+      if (objectDateOnly.getTime() > todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, upcoming, placeName);
+      }
+    } else if (element.Project === selectedValue) {
+      if (objectDateOnly.getTime() > todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, upcoming, placeName);
+      }
     }
   });
 }
@@ -70,7 +77,7 @@ function displayArrayOverdueUi(array, overdue) {
   });
 }
 
-function displayArrayTodayUi(array, today) {
+function displayArrayTodayUi(array, today, selectedValue) {
   const placeName = "Today";
 
   sortArrayByDate(array); //assuring the array by date
@@ -89,8 +96,14 @@ function displayArrayTodayUi(array, today) {
     );
     const newArray = loadTasks();
     // Corrected comparison for determining if the event is "today"
-    if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, today, placeName);
+    if (selectedValue === "All Task") {
+      if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, today, placeName);
+      }
+    } else if (element.Project === selectedValue) {
+      if (objectDateOnly.getTime() === todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, today, placeName);
+      }
     }
   });
 }
