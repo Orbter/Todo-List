@@ -1,7 +1,7 @@
 import { RemoveFormUI, RemoveScreen } from "./remove";
 import { EditItem } from "./userFormObj";
 import HomeUI from "./home";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
+import { loadTasks, addTask, saveTasks, loadProject } from "./taskStorage"; // Hypothetical taskStorage module
 import { AllTask } from "./allTasks";
 import { Overdue } from "./Overdue";
 import { Upcoming } from "./upcoming";
@@ -100,6 +100,19 @@ function editPopup(place, array, index) {
     selectPriority.appendChild(option);
   });
   divForm.append(labelPriority, selectPriority);
+  const labelProject = document.createElement("label");
+  labelProject.setAttribute("for", "form-projects");
+  labelProject.textContent = "Project";
+  const selectProject = document.createElement("select");
+  selectProject.id = "form-projects";
+  selectProject.name = "form-projects";
+  selectProject.className = "form-input";
+  selectProject.required = true;
+  const newProjects = loadProject();
+  const defaultValueProject = obj.Project; // e.g., "Stuck"
+
+  optionCraterEdit(defaultValueProject, selectProject);
+  divForm.append(labelProject, selectProject);
 
   // Create and append the 'Tag' input field
   const labelTags = document.createElement("label");
@@ -176,6 +189,19 @@ function checkingFunction(place) {
   } else if (place === "Overdue") {
     Overdue();
   }
+}
+
+function optionCraterEdit(defaultValueProject, whereToAppend) {
+  const projects = loadProject();
+  projects.forEach((obj) => {
+    const option = document.createElement("option");
+    if (obj === defaultValueProject) {
+      option.selected = true;
+    }
+    option.value = obj;
+    option.textContent = obj;
+    whereToAppend.appendChild(option);
+  });
 }
 
 export { editPopup, checkingFunction };
