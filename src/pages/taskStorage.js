@@ -35,8 +35,7 @@ export function saveProject(newProject) {
 export function loadProject() {
   let array = ["All Task", "Todo List"];
   const myLocalStorage = localStorage.getItem("projects");
-  console.log(localStorage.getItem("projects"));
-  console.log(typeof myLocalStorage);
+
   if (myLocalStorage === undefined || myLocalStorage === null) {
     return array;
   } else {

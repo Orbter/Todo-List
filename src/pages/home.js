@@ -53,7 +53,6 @@ function HomeUI() {
     RemoveContent(allTime);
     const showingArray = loadTasks();
     const selected = selectProject.value;
-    console.log(selected);
     displayArrayHomeUi(showingArray, today, thisWeek, allTime, selected);
   });
 

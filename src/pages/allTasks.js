@@ -39,7 +39,6 @@ function AllTask() {
     RemoveContent(allTime);
     const showingArray = loadTasks();
     const selected = selectProject.value;
-    console.log(selected);
     displayArrayAllTimeUi(showingArray, allTime, selected);
   });
 

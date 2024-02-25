@@ -56,18 +56,14 @@ upcomingMenu.addEventListener("click", function () {
 overdue.addEventListener("click", function () {
   Overdue();
   place = "Overdue";
-  console.log(place);
 });
 let newProject = loadProject();
 
 projectButton.addEventListener("click", function () {
-  console.log(place);
-
   addingProjectUi(place);
 });
 // Try to load existing tasks from localStorage
 let storedArray = loadTasks();
-console.log(saveTasks);
 // Only populate the array with initial objects if it's empty
 if (storedArray.length === 0) {
   const ob = createTaskObject(
@@ -95,4 +91,3 @@ if (storedArray.length === 0) {
 export { newProject };
 
 HomeUI();
-console.log(storedArray);

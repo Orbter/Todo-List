@@ -41,7 +41,6 @@ function Today() {
     RemoveContent(today);
     const showingArray = loadTasks();
     const selected = selectProject.value;
-    console.log(selected);
     displayArrayTodayUi(showingArray, today, selected);
   });
 

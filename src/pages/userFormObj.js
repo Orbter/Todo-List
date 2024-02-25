@@ -8,7 +8,6 @@ function FormToArray(array, selectedValue) {
   const priority = document.getElementById("form-priority").value;
   const tags = document.getElementById("form-tags").value;
   const date = document.getElementById("form-date").value;
-  console.log(document.getElementById("form-project"));
   const project = document.getElementById("form-projects").value;
   const obj = createTaskObject(
     task,
@@ -46,9 +45,6 @@ function EditItem(array, index) {
     project
   );
 
-  console.log("hey");
-  console.log(array);
-  console.log(array[index]);
   array[index] = obj;
   editTaskArray(obj, index);
 }

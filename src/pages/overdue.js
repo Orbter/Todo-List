@@ -35,7 +35,6 @@ function Overdue() {
 
     const showingArray = loadTasks();
     const selected = selectProject.value;
-    console.log(selected);
     displayArrayOverdueUi(showingArray, upcoming, selected);
   });
 
