@@ -89,11 +89,11 @@ function userFormUI(place) {
   divForm.append(labelPriority, selectPriority);
 
   const labelProject = document.createElement("label");
-  labelProject.setAttribute("for", "form-project");
+  labelProject.setAttribute("for", "form-projects");
   labelProject.textContent = "Project";
   const selectProject = document.createElement("select");
-  selectProject.id = "form-project";
-  selectProject.name = "form-project";
+  selectProject.id = "form-projects";
+  selectProject.name = "form-projects";
   selectProject.className = "form-input";
   selectProject.required = true;
   const newProjects = loadProject();

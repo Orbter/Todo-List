@@ -24,7 +24,7 @@ menu.addEventListener("click", function () {
   tab.classList.toggle("sidebar-active");
 });
 let myArray = [];
-let place = "";
+let place = "Home";
 const homeMenu = document.getElementById("home");
 const taskAllMenu = document.getElementById("all-task");
 const quickAddMenu = document.getElementById("quick-add");
@@ -56,11 +56,14 @@ upcomingMenu.addEventListener("click", function () {
 overdue.addEventListener("click", function () {
   Overdue();
   place = "Overdue";
+  console.log(place);
 });
 let newProject = loadProject();
 
 projectButton.addEventListener("click", function () {
-  addingProjectUi();
+  console.log(place);
+
+  addingProjectUi(place);
 });
 // Try to load existing tasks from localStorage
 let storedArray = loadTasks();

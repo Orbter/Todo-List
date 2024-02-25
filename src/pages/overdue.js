@@ -1,7 +1,7 @@
 import { createTaskObject, displayArrayOverdueUi } from "./task";
-import { RemoveScreen } from "./remove";
-import { loadTasks, addTask, saveTasks } from "./taskStorage"; // Hypothetical taskStorage module
-import { userFormUI } from "./userForm";
+import { RemoveScreen, RemoveContent } from "./remove";
+import { loadTasks, addTask, saveTasks, loadProject } from "./taskStorage"; // Hypothetical taskStorage module
+import { userFormUI, optionCrater } from "./userForm";
 
 function Overdue() {
   RemoveScreen();
@@ -13,27 +13,44 @@ function Overdue() {
   const headText = document.createElement("h1");
   const place = document.createElement("h1");
   const upcomingHeadline = document.createElement("h1");
-  const add = document.createElement("button");
+  const selectProject = document.createElement("select");
+  const newProjects = loadProject();
+
   place.innerText = "Overdue Tasks";
   headText.innerText = "you are behind schedule!";
   upcomingHeadline.innerText = "Overdue";
-  add.innerText = "add a task!";
 
+  selectProject.id = "form-project";
+  selectProject.name = "form-project";
+  selectProject.className = "form-input";
+  selectProject.required = true;
   content.classList.add("content");
   header.classList.add("header");
   contentHead.classList.add("content-head");
   upcomingHeadline.classList.add("today-headline");
   upcoming.classList.add("today");
-  add.classList.add("add", "button");
-  add.onclick = (event) => userFormUI("Overdue");
+
+  selectProject.addEventListener("change", (event) => {
+    RemoveContent(upcoming);
+
+    const showingArray = loadTasks();
+    const selected = selectProject.value;
+    console.log(selected);
+    displayArrayOverdueUi(showingArray, upcoming, selected);
+  });
+
+  optionCrater(newProjects, selectProject);
+
   mainContent.append(header, content);
   header.append(place, contentHead);
 
-  contentHead.append(headText, add);
+  contentHead.append(headText, selectProject);
+
+  const selected = selectProject.value;
 
   content.append(upcomingHeadline, upcoming);
   const showingArray = loadTasks();
-  displayArrayOverdueUi(showingArray, upcoming);
+  displayArrayOverdueUi(showingArray, upcoming, selected);
 }
 
 export { Overdue };

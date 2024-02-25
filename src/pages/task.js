@@ -52,7 +52,7 @@ function displayArrayUpcomingUi(array, upcoming, selectedValue) {
   });
 }
 
-function displayArrayOverdueUi(array, overdue) {
+function displayArrayOverdueUi(array, overdue, selectedValue) {
   const placeName = "Overdue";
 
   sortArrayByDate(array);
@@ -71,8 +71,14 @@ function displayArrayOverdueUi(array, overdue) {
     );
 
     const newArray = loadTasks();
-    if (objectDateOnly.getTime() < todayDateOnly.getTime()) {
-      appendingTask(newArray, element, index, overdue, placeName);
+    if (selectedValue === "All Task") {
+      if (objectDateOnly.getTime() < todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, overdue, placeName);
+      }
+    } else if (element.Project === selectedValue) {
+      if (objectDateOnly.getTime() < todayDateOnly.getTime()) {
+        appendingTask(newArray, element, index, overdue, placeName);
+      }
     }
   });
 }
